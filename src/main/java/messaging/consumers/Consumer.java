@@ -1,5 +1,8 @@
-package main.java.messaging.consumers;
+package messaging.consumers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import model.BasicUser;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -18,6 +21,8 @@ public class Consumer {
 
     public static void main(String[] args) throws IOException {
 
+        ObjectMapper mapper = new ObjectMapper();
+
         // and the consumer, with minimal config needed to use consumer groups
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092");
@@ -34,6 +39,8 @@ public class Consumer {
             while (running) {
                 ConsumerRecords<String, String> records = consumer.poll(1000);
                 for (ConsumerRecord<String, String> record : records) {
+                    // populate the BasicUser pojo
+                    BasicUser user = mapper.readValue(record.value(), BasicUser.class);
                     HashMap<String, Object> data = new HashMap();
                     data.put("partition", record.partition());
                     data.put("offset", record.offset());

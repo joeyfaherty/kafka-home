@@ -27,7 +27,7 @@ https://www.apache.org/dyn/closer.cgi?path=/kafka/0.9.0.0/kafka_2.11-0.9.0.0.tgz
 
 [input some text, each line is a new msg by default]
 
-6: Run main java class (Consumer.java) which subscribes to the "test" topic created above to consumer the messages sent in the previous step.
+6: Run main java class (Consumer.java) which subscribes to the "test" topic created above to consume the messages sent in the previous step.
 
 ref: 
 http://kafka.apache.org/documentation.html#quickstart

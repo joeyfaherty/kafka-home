@@ -1,11 +1,15 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Created by joey on 5/16/16.
  */
 public class BasicUser {
 
+    @JsonProperty(value="name")
     private String name;
+    @JsonProperty(value="age")
     private int age;
 
     public String getName() {
@@ -23,4 +27,5 @@ public class BasicUser {
     public void setAge(int age) {
         this.age = age;
     }
+
 }
